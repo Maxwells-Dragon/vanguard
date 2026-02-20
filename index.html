@@ -407,6 +407,64 @@
             text-transform: uppercase;
         }
 
+        /* Collapsible Class Cards */
+        details.class-card > summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+        }
+
+        details.class-card > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.class-card > summary::marker {
+            display: none;
+            content: '';
+        }
+
+        details.class-card > summary::after {
+            content: '+';
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--accent-gold-dim);
+            position: absolute;
+            right: 2rem;
+            top: 1.5rem;
+        }
+
+        details[open].class-card > summary::after {
+            content: '\2212';
+        }
+
+        details.class-card:not([open]) > summary {
+            border-bottom: none;
+        }
+
+        .class-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0.5rem;
+        }
+
+        .class-controls button {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .class-controls button:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold-dim);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -481,14 +539,6 @@
                 </ul>
             </div>
 
-            <div class="info-box" data-label="What's Coming">
-                <ul>
-                    <li>Level 3+ features will be revealed as you advance.</li>
-                    <li>How (and whether) your character might access different capabilities will become clear in time.</li>
-                    <li>Advanced training options exist. You'll learn about them when the time is right.</li>
-                </ul>
-            </div>
-
             <h3>Game Details</h3>
             <table>
                 <tbody>
@@ -514,6 +564,16 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h3>What to Expect</h3>
+            <p><strong>Early levels:</strong> Urban operations, criminal investigations, monster threats. You're elite soldiers doing Vanguard work—protecting civilians, hunting dangerous targets, handling situations regular military can't.</p>
+            <p><strong>As you advance:</strong> Level 3+ features will be revealed as you progress. How and whether your character might access different capabilities will become clear in time. Advanced training options exist—you'll learn about them when the time is right.</p>
+            <p><strong>Combat and beyond:</strong> Tactical and positioning-focused. Your class abilities create distinct playstyles, and teamwork matters. Not every problem is solved with a sword—but you'll be using that sword rather a lot.</p>
+            <p><strong>Character development:</strong> Your character will grow and change. How that happens depends on your choices and what you encounter.</p>
+
+            <div class="info-box" data-label="A Note on Homebrew">
+                <p>The GM is looking forward to revealing and testing these mechanics with you, and hopefully you'll enjoy discovering them too. Balance tweaks are inevitable as we learn what works at the table—when adjustments are needed, expect generous retconning options. The goal is fun, not getting locked into something that doesn't work.</p>
+            </div>
         </section>
 
         <!-- THE WORLD YOU KNOW -->
@@ -584,7 +644,7 @@
             <h2>Character Creation</h2>
 
             <h3>Race</h3>
-            <p>All characters are <strong>human</strong>. The Vanguard recruits from humanity's ranks. Other options may be introduced later.</p>
+            <p>All characters are <strong>human</strong>. The Vanguard recruits from humanity's ranks.</p>
 
             <h3>Ability Scores</h3>
             <p>Your six ability scores are determined by the following method:</p>
@@ -646,6 +706,16 @@
             </table>
 
             <p style="margin-top: 1em; font-style: italic;">*At character creation, you only know Valdric (the common language of Valdris and neighboring nations). If your Intelligence modifier grants you additional language proficiencies, you don't need to choose them now. Instead, when a situation arises where knowing another language would be useful, you can declare via flashback that your character learned it previously.</p>
+
+            <h3>Starting Equipment</h3>
+            <p>All Vanguard recruits receive the following:</p>
+            <ul>
+                <li><strong>Armor (choose one):</strong> Studded leather, chain shirt, or scale mail</li>
+                <li><strong>Weapons (choose three):</strong> Any combination of simple weapons, simple ranged weapons, and/or a shield</li>
+                <li><strong>Ammunition:</strong> 100 of any ammunition type for a ranged weapon you chose (not tracked in play)</li>
+                <li><strong>Explorer's pack:</strong> Backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days rations, waterskin, 50 feet hempen rope</li>
+                <li><strong>Vanguard insignia</strong></li>
+            </ul>
         </section>
 
         <!-- CLASSES -->
@@ -659,36 +729,40 @@
                 <p>These are military designations, not mystical titles. A "Champion" is the soldier assigned to hold the line. A "Skirmisher" is the one sent to flank. A "Ranger" is the mobile sharpshooter. Your commanding officer assigns these roles based on aptitude and fighting style—they describe what you do, not who you are.</p>
             </div>
 
+            <div class="class-controls">
+                <button id="toggle-all-classes" onclick="toggleAllClasses()">Collapse All</button>
+            </div>
+
             <!-- CHAMPION -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Champion</div>
                     <div class="class-role">Tough protector who absorbs punishment and locks down enemies.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
                         <li>Gain <strong>+1 AC</strong>, <strong>+1 to hit</strong> on all attacks, and <strong>+1 maximum HP per level</strong></li>
                         <li>Gain <strong>one additional reaction</strong> per round</li>
                         <li><span class="feature-name">Absorb</span> (reaction): When you or an adjacent ally takes damage, that creature gains temporary HP equal to half the damage taken (after other reductions, rounded down)</li>
-                        <li><span class="feature-name">Defensive Grip</span>: Your opportunity attacks, when they hit, end the target's voluntary movement</li>
+                        <li><span class="feature-name">Enhanced Opportunity Attacks</span>: Your opportunity attacks, when they hit, reduce the target's speed to 0 for the rest of the turn</li>
                     </ul>
                 </div>
                 <div class="class-skills">
                     <strong>Skills:</strong> Choose 1 from (Athletics, Survival) • Choose 1 from (Insight, Medicine) • Choose 1 additional skill
                 </div>
                 <div class="level-2-feature">
-                    <h4>Level 2 -- Sentinel</h4>
-                    <p>Creatures provoke opportunity attacks from you when they attack someone other than you while in your reach. When you hit with an opportunity attack, the target's speed becomes 0 for the rest of the turn.</p>
+                    <h4>Level 2 -- Guardian</h4>
+                    <p>Creatures provoke opportunity attacks from you when they make an attack against a target other than you while within your reach.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- FIGHTER -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Fighter</div>
                     <div class="class-role">Mobile striker who gains power through constant repositioning.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
@@ -701,21 +775,21 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Battleflow</h4>
-                    <p>When you use Reposition, gain +1 AC and +1 to hit until the end of your next turn. This bonus does not stack with itself.</p>
+                    <p>When you have moved at least 10 feet since the start of your last turn, you gain +1 to AC, +1 to hit, and bonus damage equal to half your level (rounded down) until the end of your next turn. This bonus does not stack with itself.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- RANGER -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Ranger</div>
                     <div class="class-role">Mobile ranged specialist who marks and kites targets.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
                         <li><span class="feature-name">Reposition</span>: Move up to 10 feet without provoking opportunity attacks. Can be used as a bonus action on your turn, or as a reaction when a creature moves within 5 feet of you.</li>
-                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks this turn</li>
+                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks against non-adjacent targets (more than 5 feet away) this turn</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -723,20 +797,20 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Quarry</h4>
-                    <p>When you hit with a Steady Shot attack, you may designate that creature as your Quarry. Your subsequent attacks against your Quarry deal +1d4 bonus damage per 2 levels. You also gain a bonus equal to half your level (rounded down) on checks to track your Quarry. The target remains your Quarry until it dies or you designate a new Quarry.</p>
+                    <p>When you hit with a Steady Shot attack, you may designate that creature as your Quarry. Your subsequent ranged attacks against your Quarry deal +1d4 bonus damage per 2 levels. You also gain a bonus equal to half your level (rounded down) on checks to track your Quarry. The target remains your Quarry until it dies or you designate a new Quarry.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- INVESTIGATOR -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Investigator</div>
                     <div class="class-role">Precision striker who studies targets for devastating attacks.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
-                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks this turn</li>
+                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks against non-adjacent targets (more than 5 feet away) this turn</li>
                         <li>Gain <strong>one additional bonus action</strong> per round</li>
                         <li><span class="feature-name">Hide</span> (bonus action): Take the Hide action</li>
                         <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
@@ -751,14 +825,14 @@
                     <p>If you Study a creature whose AC you already learned through Study, you also learn its damage vulnerabilities, resistances, and immunities, if any.</p>
                     <p>If you Study a creature whose vulnerabilities you already learned through Study, the creature's AC and saving throws against your attacks and effects are also reduced by 2 until the end of your next turn.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- OPERATIVE -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Operative</div>
                     <div class="class-role">Slippery survivor with exceptional action economy and reactive defense.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
@@ -767,7 +841,7 @@
                         <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
                         <li>Gain <strong>one additional reaction</strong> per round</li>
                         <li><span class="feature-name">Absorb</span> (reaction): When you or an adjacent ally takes damage, that creature gains temporary HP equal to half the damage taken (after other reductions, rounded down)</li>
-                        <li><span class="feature-name">Defensive Grip</span>: Your opportunity attacks, when they hit, end the target's voluntary movement</li>
+                        <li><span class="feature-name">Enhanced Opportunity Attacks</span>: Your opportunity attacks, when they hit, reduce the target's speed to 0 for the rest of the turn</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -777,20 +851,20 @@
                     <h4>Level 2 -- Preemptive Strike</h4>
                     <p>(1/round) When an enemy you can see is about to attack you, use your reaction to make an opportunity attack first. If you incapacitate the enemy, their attack doesn't happen. You can still use your other reaction(s) for other abilities.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- MONK -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Monk</div>
                     <div class="class-role">Agile brawler who flows between offense and defense.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
                         <li>Gain <strong>one additional reaction</strong> per round</li>
                         <li><span class="feature-name">Absorb</span> (reaction): When you or an adjacent ally takes damage, that creature gains temporary HP equal to half the damage taken (after other reductions, rounded down)</li>
-                        <li><span class="feature-name">Defensive Grip</span>: Your opportunity attacks, when they hit, end the target's voluntary movement</li>
+                        <li><span class="feature-name">Enhanced Opportunity Attacks</span>: Your opportunity attacks, when they hit, reduce the target's speed to 0 for the rest of the turn</li>
                         <li><span class="feature-name">Reposition</span>: Move up to 10 feet without provoking opportunity attacks. Can be used as a bonus action on your turn, or as a reaction when a creature moves within 5 feet of you.</li>
                     </ul>
                 </div>
@@ -801,21 +875,21 @@
                     <h4>Level 2 -- Martial Artist</h4>
                     <p>You can use any object as an improvised weapon (minimum 1d4 damage). Once per turn, you can use a bonus action to make an unarmed strike or improvised weapon attack, dealing 1d6 + your Dexterity modifier + half your level (rounded down) in damage.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- COMMANDER -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Commander</div>
                     <div class="class-role">Ranged leader who supports allies while contributing personal firepower.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
                         <li>Gain <strong>one additional reaction</strong> per round</li>
                         <li><span class="feature-name">Absorb</span> (reaction): When you or an adjacent ally takes damage, that creature gains temporary HP equal to half the damage taken (after other reductions, rounded down)</li>
-                        <li><span class="feature-name">Defensive Grip</span>: Your opportunity attacks, when they hit, end the target's voluntary movement</li>
-                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks this turn</li>
+                        <li><span class="feature-name">Enhanced Opportunity Attacks</span>: Your opportunity attacks, when they hit, reduce the target's speed to 0 for the rest of the turn</li>
+                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks against non-adjacent targets (more than 5 feet away) this turn</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -825,36 +899,36 @@
                     <h4>Level 2 -- Rally</h4>
                     <p>(Reaction, 1/round) When an ally within 60 feet that you can see misses an attack roll, you can allow that ally to reroll the attack. They must use the new result. If the ally hits with the rerolled attack, you may immediately make one weapon attack against the same target.</p>
                 </div>
-            </div>
+            </details>
 
-            <!-- SNIPER -->
-            <div class="class-card">
-                <div class="class-header">
-                    <div class="class-name">Sniper</div>
+            <!-- SENTINEL -->
+            <details class="class-card" open>
+                <summary class="class-header">
+                    <div class="class-name">Sentinel</div>
                     <div class="class-role">Stationary devastator with unmatched ranged accuracy.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
                         <li>Gain <strong>+1 AC</strong>, <strong>+1 to hit</strong> on all attacks, and <strong>+1 maximum HP per level</strong></li>
-                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks this turn</li>
+                        <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks against non-adjacent targets (more than 5 feet away) this turn</li>
                     </ul>
                 </div>
                 <div class="class-skills">
                     <strong>Skills:</strong> Choose 1 from (Athletics, Survival) • Choose 1 from (Investigation, Perception) • Choose 1 additional skill
                 </div>
                 <div class="level-2-feature">
-                    <h4>Level 2 -- Deadeye</h4>
-                    <p>When using Steady Shot, your ranged attacks score a critical hit on a roll of 18-20, ignore half cover and three-quarters cover, and when you score a critical hit, you roll the weapon's damage dice one additional time.</p>
+                    <h4>Level 2 -- Precise Strike</h4>
+                    <p>When you use Steady Shot, it applies to all attacks you make against non-adjacent targets (more than 5 feet away), not just ranged attacks. This includes melee attacks made with reach weapons, thrown weapons, and spell attacks. Your attacks made with Steady Shot ignore half cover and three-quarters cover and score a critical hit on a roll of 18-20.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- THUG -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Thug</div>
                     <div class="class-role">Durable ambusher who creates their own opportunities.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
@@ -871,14 +945,14 @@
                     <h4>Level 2 -- Pummel</h4>
                     <p>When you hit a creature with a melee attack, your attacks against that creature deal +1d6 bonus damage per 2 levels until the end of your next turn.</p>
                 </div>
-            </div>
+            </details>
 
             <!-- SKIRMISHER -->
-            <div class="class-card">
-                <div class="class-header">
+            <details class="class-card" open>
+                <summary class="class-header">
                     <div class="class-name">Skirmisher</div>
                     <div class="class-role">Highly mobile flanker who weaves in and out of combat.</div>
-                </div>
+                </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
                     <ul>
@@ -895,7 +969,7 @@
                     <h4>Level 2 -- Flanking Strike</h4>
                     <p>When you and an ally are flanking a creature (on opposite sides per the flanking rule), your attacks against that creature deal +1d6 bonus damage per 2 levels.</p>
                 </div>
-            </div>
+            </details>
         </section>
 
         <!-- LEVEL 2 -->
@@ -923,7 +997,7 @@
                     </tr>
                     <tr>
                         <td>Unarmored Defense</td>
-                        <td>While wearing no armor, your AC equals 10 + your Dexterity modifier + your Wisdom modifier</td>
+                        <td>While wearing no armor, your AC equals 10 + your Dexterity modifier + 2. If you have at least one hand free, you gain an additional +2 AC</td>
                     </tr>
                 </tbody>
             </table>
@@ -999,7 +1073,7 @@
                         <td>Ally support + personal ranged</td>
                     </tr>
                     <tr>
-                        <td>Sniper</td>
+                        <td>Sentinel</td>
                         <td class="check">Y</td>
                         <td class="no-check">--</td>
                         <td class="no-check">--</td>
@@ -1077,11 +1151,14 @@
         <section id="faq">
             <h2>Frequently Asked Questions</h2>
 
-            <h3>Will I get magic?</h3>
+            <h3>Will my character get magic?</h3>
             <p>Maybe.</p>
 
             <h3>Are these classes balanced?</h3>
             <p>We'll see. These rules are playtesting—real combat will reveal what works and what doesn't. If something proves over- or underpowered in practice, we can adjust. Every class is designed to be viable, but balance is something we'll discover together at the table.</p>
+
+            <h3>Can I play [specific 5e class]?</h3>
+            <p>No. The ten classes in this game replace all standard 5e classes. Choose from what's provided.</p>
 
             <h3>What if I want to change my class later?</h3>
             <p>Talk to the GM. The Vanguard does reassign soldiers based on aptitude. If your initial choice doesn't fit how you want to play, we'll find a solution.</p>
@@ -1092,14 +1169,27 @@
             <h3>What's the expected tone?</h3>
             <p>Military competence with escalating stakes. You start as elite soldiers. You won't stay that simple. Expect your understanding of the world—and your place in it—to shift as the campaign progresses.</p>
 
-            <h3>How much backstory should I write?</h3>
-            <p>Not much. A name, an attitude, maybe one or two concrete details. Use the Flashback rule to fill in the rest as it becomes relevant. You don't yet know what parts of your history will matter.</p>
+            <h3>Will my character survive?</h3>
+            <p>Death is possible but not the goal. Make smart choices, work with your team, don't be reckless.</p>
+
+            <h3>How much backstory do I need?</h3>
+            <p>Very little. A name, general personality, and maybe one detail. Use Flashbacks to fill in the rest.</p>
         </section>
     </main>
 
     <footer>
-        <p>All That Binds Us -- The Vanguard Field Manual</p>
-        <p>Your character will grow in ways you can't predict. Trust the process.</p>
+        <p>Create a character. Leave room in their backstory. Trust the process.</p>
+        <p>See you at the barracks.</p>
     </footer>
+
+    <script>
+        function toggleAllClasses() {
+            const details = document.querySelectorAll('details.class-card');
+            const btn = document.getElementById('toggle-all-classes');
+            const anyOpen = Array.from(details).some(d => d.open);
+            details.forEach(d => d.open = !anyOpen);
+            btn.textContent = anyOpen ? 'Expand All' : 'Collapse All';
+        }
+    </script>
 </body>
 </html>
