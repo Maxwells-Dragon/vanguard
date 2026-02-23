@@ -209,6 +209,13 @@
             margin-bottom: 0;
         }
 
+        .table-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
         /* Info Boxes */
         .info-box {
             background: var(--bg-tertiary);
@@ -757,10 +764,10 @@
                 </div>
             </details>
 
-            <!-- FIGHTER -->
+            <!-- MARAUDER -->
             <details class="class-card" open>
                 <summary class="class-header">
-                    <div class="class-name">Fighter</div>
+                    <div class="class-name">Marauder</div>
                     <div class="class-role">Mobile striker who gains power through constant repositioning.</div>
                 </summary>
                 <div class="class-body">
@@ -797,7 +804,7 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Quarry</h4>
-                    <p>When you hit with a Steady Shot attack, you may designate that creature as your Quarry. Your subsequent ranged attacks against your Quarry deal +1d4 bonus damage per 2 levels. You also gain a bonus equal to half your level (rounded down) on checks to track your Quarry. The target remains your Quarry until it dies or you designate a new Quarry.</p>
+                    <p>When you hit with a Steady Shot attack, you may designate that creature as your Quarry. Your subsequent ranged attacks against your Quarry deal +1d4 bonus damage per 3 levels. You also gain a bonus equal to half your level (rounded down) on checks to track your Quarry. The target remains your Quarry until it dies or you designate a new Quarry.</p>
                 </div>
             </details>
 
@@ -813,7 +820,7 @@
                         <li><span class="feature-name">Steady Shot</span>: When you forgo your normal movement for the turn, gain +2 to hit and +4 damage on all ranged attacks against non-adjacent targets (more than 5 feet away) this turn</li>
                         <li>Gain <strong>one additional bonus action</strong> per round</li>
                         <li><span class="feature-name">Hide</span> (bonus action): Take the Hide action</li>
-                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
+                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks. Lasts until end of your next turn or until the creature attacks.</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -821,7 +828,7 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Study</h4>
-                    <p>(Bonus action, once per round) Choose a creature you can see within 30 feet. You learn that creature's AC. Your attacks against that creature deal +1d4 bonus damage per 2 levels until the end of your next turn.</p>
+                    <p>(Bonus action, once per round) Choose a creature you can see within 30 feet. You learn that creature's AC. Your attacks against that creature deal +1d4 bonus damage per 3 levels until the end of your next turn.</p>
                     <p>If you Study a creature whose AC you already learned through Study, you also learn its damage vulnerabilities, resistances, and immunities, if any.</p>
                     <p>If you Study a creature whose vulnerabilities you already learned through Study, the creature's AC and saving throws against your attacks and effects are also reduced by 2 until the end of your next turn.</p>
                 </div>
@@ -838,7 +845,7 @@
                     <ul>
                         <li>Gain <strong>one additional bonus action</strong> per round</li>
                         <li><span class="feature-name">Hide</span> (bonus action): Take the Hide action</li>
-                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
+                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks. Lasts until end of your next turn or until the creature attacks.</li>
                         <li>Gain <strong>one additional reaction</strong> per round</li>
                         <li><span class="feature-name">Absorb</span> (reaction): When you or an adjacent ally takes damage, that creature gains temporary HP equal to half the damage taken (after other reductions, rounded down)</li>
                         <li><span class="feature-name">Enhanced Opportunity Attacks</span>: Your opportunity attacks, when they hit, reduce the target's speed to 0 for the rest of the turn</li>
@@ -853,11 +860,11 @@
                 </div>
             </details>
 
-            <!-- MONK -->
+            <!-- BRAWLER -->
             <details class="class-card" open>
                 <summary class="class-header">
-                    <div class="class-name">Monk</div>
-                    <div class="class-role">Agile brawler who flows between offense and defense.</div>
+                    <div class="class-name">Brawler</div>
+                    <div class="class-role">Agile fighter who flows between offense and defense.</div>
                 </summary>
                 <div class="class-body">
                     <h4>Level 1 Features</h4>
@@ -935,7 +942,7 @@
                         <li>Gain <strong>+1 AC</strong>, <strong>+1 to hit</strong> on all attacks, and <strong>+1 maximum HP per level</strong></li>
                         <li>Gain <strong>one additional bonus action</strong> per round</li>
                         <li><span class="feature-name">Hide</span> (bonus action): Take the Hide action</li>
-                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
+                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks. Lasts until end of your next turn or until the creature attacks.</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -943,7 +950,7 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Pummel</h4>
-                    <p>When you hit a creature with a melee attack, your attacks against that creature deal +1d6 bonus damage per 2 levels until the end of your next turn.</p>
+                    <p>When you hit a creature with a melee attack, your attacks against that creature deal +1d6 bonus damage per 3 levels until the end of your next turn.</p>
                 </div>
             </details>
 
@@ -959,7 +966,7 @@
                         <li><span class="feature-name">Reposition</span>: Move up to 10 feet without provoking opportunity attacks. Can be used as a bonus action on your turn, or as a reaction when a creature moves within 5 feet of you.</li>
                         <li>Gain <strong>one additional bonus action</strong> per round</li>
                         <li><span class="feature-name">Hide</span> (bonus action): Take the Hide action</li>
-                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks and grants advantage to attackers. Lasts until end of your next turn or until the creature attacks or is attacked.</li>
+                        <li><span class="feature-name">Distract</span> (bonus action): An adjacent creature has disadvantage on its attacks. Lasts until end of your next turn or until the creature attacks.</li>
                     </ul>
                 </div>
                 <div class="class-skills">
@@ -967,7 +974,7 @@
                 </div>
                 <div class="level-2-feature">
                     <h4>Level 2 -- Flanking Strike</h4>
-                    <p>When you and an ally are flanking a creature (on opposite sides per the flanking rule), your attacks against that creature deal +1d6 bonus damage per 2 levels.</p>
+                    <p>When you and an ally are flanking a creature (on opposite sides per the flanking rule), your attacks against that creature deal +1d6 bonus damage per 3 levels.</p>
                 </div>
             </details>
         </section>
@@ -997,10 +1004,11 @@
                     </tr>
                     <tr>
                         <td>Unarmored Defense</td>
-                        <td>While wearing no armor, your AC equals 10 + your Dexterity modifier + 2. If you have at least one hand free, you gain an additional +2 AC</td>
+                        <td>While wearing no armor, your AC equals 10 + your Dexterity modifier + 2. If you have at least one hand free, you gain an additional +2 AC*</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="table-note">*Wielding a weapon two-handed means no free hand until the start of your next turn for the purpose of this feature. Stowing or dropping the weapon frees it early.</p>
 
             <div class="info-box" data-label="Note">
                 <p>Most soldiers opt for a martial weapon to expand their combat options. Heavy armor is favored by those who expect to hold the front line. Unarmored Defense suits those who rely on speed and awareness rather than steel.</p>
@@ -1031,7 +1039,7 @@
                         <td>Tankiest, locks down enemies</td>
                     </tr>
                     <tr>
-                        <td>Fighter</td>
+                        <td>Marauder</td>
                         <td class="check">Y</td>
                         <td class="no-check">--</td>
                         <td class="no-check">--</td>
@@ -1059,7 +1067,7 @@
                         <td>Most actions, reactive defense</td>
                     </tr>
                     <tr>
-                        <td>Monk</td>
+                        <td>Brawler</td>
                         <td class="no-check">--</td>
                         <td class="no-check">--</td>
                         <td class="check">Y</td>
@@ -1137,7 +1145,7 @@
                         <td>4d4</td>
                     </tr>
                     <tr>
-                        <td>Martial Artist bonus (Monk)</td>
+                        <td>Martial Artist bonus (Brawler)</td>
                         <td>+1</td>
                         <td>+2</td>
                         <td>+3</td>
